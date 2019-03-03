@@ -92,6 +92,10 @@ public class SolarActivity extends AppCompatActivity {
       return;
     }
 
+    // Build a renderable from a 2D View.
+    CompletableFuture<ViewRenderable> solarControlsStage =
+            ViewRenderable.builder().setView(this, R.layout.solar_controls).build();
+
     setContentView(R.layout.activity_solar);
     arSceneView = findViewById(R.id.ar_scene_view);
 
@@ -116,10 +120,6 @@ public class SolarActivity extends AppCompatActivity {
         ModelRenderable.builder().setSource(this, Uri.parse("Uranus.sfb")).build();
     CompletableFuture<ModelRenderable> neptuneStage =
         ModelRenderable.builder().setSource(this, Uri.parse("Neptune.sfb")).build();
-
-    // Build a renderable from a 2D View.
-    CompletableFuture<ViewRenderable> solarControlsStage =
-        ViewRenderable.builder().setView(this, R.layout.solar_controls).build();
 
     CompletableFuture.allOf(
             sunStage,
